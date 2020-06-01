@@ -1,17 +1,17 @@
 #X - Comment out/remove in release
 #T - Temporary, remove after testing
-import tkinter as tk
-from tkinter import *
-#Pillow
 
-from PIL import Image
+#Noted bugs - Sketch outline becomes thicker when "None" option is chosen in pattern
+import tkinter as tk #Importing tkinter for GUI
+from tkinter import *
+from PIL import Image #Importing Pillow for image manipulation
 
 #Calling pattern variables to none for global usage in functions
 pastepattern = None
 
 price = 0
 length = 0
-a = 0
+a = 0 #Obsolete variables - in use for future
 b = 0
 c = 0
 
@@ -27,6 +27,7 @@ colorprice = 0
 fabricprice = 0
 patternprice = 0
 collarprice = 0
+pocketprice = 0
 
 #LengthIncrement
 lensleeve = 0
@@ -37,12 +38,16 @@ bcollar = None
 bmask = None
 baselabel = None
 baseshirtimg = None
+bpocket = None
 
 #Global variables for pattern
 collarreg = None
+pocketreg = None
 
-root=Tk()
+root=Tk() #Start of tkinter GUI window
 root.configure(width=1000, height=600, bg="#F0F0F0")
+root.iconbitmap('source/blue.ico')
+root.title('Costing App (Testing Version)')
 
 # X - For base white shirt; only to be removed in final release
 def start():  # Start Base
@@ -54,15 +59,40 @@ def start():  # Start Base
     global st
     global pt
     global baseshirtimg
+    global bpocket
 
-    if dt == 0:
+    if dt == 0: #Checks design type
 
-        if ct == 0:
+        if ct == 0: #Checks collar type
             bcollar = Image.open('source/collar_regular.png')
+            if pt == 0: #Checks pocket type
+                bpocket = Image.open('source/pocket_none.png')
+            elif pt == 1:
+                bpocket = Image.open('source/pocket_round.png')
+            elif pt == 2:
+                bpocket = Image.open('source/pocket_flap.png')
+            elif pt == 3:
+                bpocket = Image.open('source/pocket_mock.png')
         elif ct == 1:
             bcollar = Image.open('source/collar_standing.png')
+            if pt == 0:
+                bpocket = Image.open('source/pocket_none.png')
+            elif pt == 1:
+                bpocket = Image.open('source/pocket_round.png')
+            elif pt == 2:
+                bpocket = Image.open('source/pocket_flap.png')
+            elif pt == 3:
+                bpocket = Image.open('source/pocket_mock.png')
         elif ct == 2:
             bcollar = Image.open('source/collar_buttondown.png')
+            if pt == 0:
+                bpocket = Image.open('source/pocket_none.png')
+            elif pt == 1:
+                bpocket = Image.open('source/pocket_round.png')
+            elif pt == 2:
+                bpocket = Image.open('source/pocket_flap.png')
+            elif pt == 3:
+                bpocket = Image.open('source/pocket_mock.png')
 
         if st == 0:
             bshirt = Image.open('source/torso_half_sleeve.png')
@@ -73,6 +103,7 @@ def start():  # Start Base
 
         bmask.paste(bshirt, (0, 0), bshirt)
         bmask.paste(bcollar, (0, 0), bcollar)
+        bmask.paste(bpocket, (0,0), bpocket)
         bmask.save('dump/baseinit.png')
 
         baseshirt = tk.PhotoImage(file='dump/baseinit.png')
@@ -82,10 +113,42 @@ def start():  # Start Base
 
         if ct == 0:
             bcollar = Image.open('source/collar_regular.png')
+            if pt == 0:
+                bpocket = Image.open('source/pocket_none.png')
+            elif pt == 1:
+                bpocket = Image.open('source/pocket_round.png')
+            elif pt == 2:
+                bpocket = Image.open('source/pocket_flap.png')
+            elif pt == 3:
+                bpocket = Image.open('source/pocket_mock.png')
+            if pt == 0:
+                bpocket = Image.open('source/pocket_none.png')
+            elif pt == 1:
+                bpocket = Image.open('source/pocket_round.png')
+            elif pt == 2:
+                bpocket = Image.open('source/pocket_flap.png')
+            elif pt == 3:
+                bpocket = Image.open('source/pocket_mock.png')
         elif ct == 1:
             bcollar = Image.open('source/collar_standing.png')
+            if pt == 0:
+                bpocket = Image.open('source/pocket_none.png')
+            elif pt == 1:
+                bpocket = Image.open('source/pocket_round.png')
+            elif pt == 2:
+                bpocket = Image.open('source/pocket_flap.png')
+            elif pt == 3:
+                bpocket = Image.open('source/pocket_mock.png')
         elif ct == 2:
             bcollar = Image.open('source/collar_buttondown.png')
+            if pt == 0:
+                bpocket = Image.open('source/pocket_none.png')
+            elif pt == 1:
+                bpocket = Image.open('source/pocket_round.png')
+            elif pt == 2:
+                bpocket = Image.open('source/pocket_flap.png')
+            elif pt == 3:
+                bpocket = Image.open('source/pocket_mock.png')
 
         if st == 0:
             bshirt = Image.open('source/torso_half_sleeve.png')
@@ -98,6 +161,7 @@ def start():  # Start Base
         bmask.paste(bcollar, (0, 0), bcollar)
         design = Image.open('source/stripes.png')
         design.paste(bmask, (0,0), bmask)
+        design.paste(bpocket,(0,0),bpocket)
         design.save('dump/baseinit.png')
 
         baseshirt = tk.PhotoImage(file='dump/baseinit.png')
@@ -107,10 +171,42 @@ def start():  # Start Base
 
         if ct == 0:
             bcollar = Image.open('source/collar_regular.png')
+            if pt == 0:
+                bpocket = Image.open('source/pocket_none.png')
+            elif pt == 1:
+                bpocket = Image.open('source/pocket_round.png')
+            elif pt == 2:
+                bpocket = Image.open('source/pocket_flap.png')
+            elif pt == 3:
+                bpocket = Image.open('source/pocket_mock.png')
+            if pt == 0:
+                bpocket = Image.open('source/pocket_none.png')
+            elif pt == 1:
+                bpocket = Image.open('source/pocket_round.png')
+            elif pt == 2:
+                bpocket = Image.open('source/pocket_flap.png')
+            elif pt == 3:
+                bpocket = Image.open('source/pocket_mock.png')
         elif ct == 1:
             bcollar = Image.open('source/collar_standing.png')
+            if pt == 0:
+                bpocket = Image.open('source/pocket_none.png')
+            elif pt == 1:
+                bpocket = Image.open('source/pocket_round.png')
+            elif pt == 2:
+                bpocket = Image.open('source/pocket_flap.png')
+            elif pt == 3:
+                bpocket = Image.open('source/pocket_mock.png')
         elif ct == 2:
             bcollar = Image.open('source/collar_buttondown.png')
+            if pt == 0:
+                bpocket = Image.open('source/pocket_none.png')
+            elif pt == 1:
+                bpocket = Image.open('source/pocket_round.png')
+            elif pt == 2:
+                bpocket = Image.open('source/pocket_flap.png')
+            elif pt == 3:
+                bpocket = Image.open('source/pocket_mock.png')
 
         if st == 0:
             bshirt = Image.open('source/torso_half_sleeve.png')
@@ -123,6 +219,7 @@ def start():  # Start Base
         bmask.paste(bcollar, (0, 0), bcollar)
         design = Image.open('source/polka.png')
         design.paste(bmask, (0,0), bmask)
+        design.paste(bpocket,(0,0),bpocket)
         design.save('dump/baseinit.png')
 
         baseshirt = tk.PhotoImage(file='dump/baseinit.png')
@@ -132,10 +229,34 @@ def start():  # Start Base
 
         if ct == 0:
             bcollar = Image.open('source/collar_regular.png')
+            if pt == 0:
+                bpocket = Image.open('source/pocket_none.png')
+            elif pt == 1:
+                bpocket = Image.open('source/pocket_round.png')
+            elif pt == 2:
+                bpocket = Image.open('source/pocket_flap.png')
+            elif pt == 3:
+                bpocket = Image.open('source/pocket_mock.png')
         elif ct == 1:
             bcollar = Image.open('source/collar_standing.png')
+            if pt == 0:
+                bpocket = Image.open('source/pocket_none.png')
+            elif pt == 1:
+                bpocket = Image.open('source/pocket_round.png')
+            elif pt == 2:
+                bpocket = Image.open('source/pocket_flap.png')
+            elif pt == 3:
+                bpocket = Image.open('source/pocket_mock.png')
         elif ct == 2:
             bcollar = Image.open('source/collar_buttondown.png')
+            if pt == 0:
+                bpocket = Image.open('source/pocket_none.png')
+            elif pt == 1:
+                bpocket = Image.open('source/pocket_round.png')
+            elif pt == 2:
+                bpocket = Image.open('source/pocket_flap.png')
+            elif pt == 3:
+                bpocket = Image.open('source/pocket_mock.png')
 
         if st == 0:
             bshirt = Image.open('source/torso_half_sleeve.png')
@@ -148,6 +269,7 @@ def start():  # Start Base
         bmask.paste(bcollar, (0, 0), bcollar)
         design = Image.open('source/flowers.png')
         design.paste(bmask, (0,0), bmask)
+        design.paste(bpocket,(0,0),bpocket)
         design.save('dump/baseinit.png')
 
         baseshirt = tk.PhotoImage(file='dump/baseinit.png')
@@ -161,19 +283,46 @@ def stripes():
     global pastepattern
     global ct
     global collarreg
+    global pt
+    global pocketreg
     design = Image.open('source/stripes.png')
     mask = Image.open('source/mask_half_sleeve.png')
     shirt = Image.open('source/torso_half_sleeve.png')
 
     if ct == 0:
         collarreg = Image.open('source/collar_regular.png')
+        if pt == 0:
+            pocketreg = Image.open('source/pocket_none.png')
+        elif pt == 1:
+            pocketreg = Image.open('source/pocket_round.png')
+        elif pt == 2:
+            pocketreg = Image.open('source/pocket_flap.png')
+        elif pt == 3:
+            pocketreg = Image.open('source/pocket_mock.png')
     elif ct == 1:
         collarreg = Image.open('source/collar_standing.png')
+        if pt == 0:
+            pocketreg = Image.open('source/pocket_none.png')
+        elif pt == 1:
+            pocketreg = Image.open('source/pocket_round.png')
+        elif pt == 2:
+            pocketreg = Image.open('source/pocket_flap.png')
+        elif pt == 3:
+            pocketreg = Image.open('source/pocket_mock.png')
     elif ct == 2:
         collarreg = Image.open('source/collar_buttondown.png')
+        if pt == 0:
+            pocketreg = Image.open('source/pocket_none.png')
+        elif pt == 1:
+            pocketreg = Image.open('source/pocket_round.png')
+        elif pt == 2:
+            pocketreg = Image.open('source/pocket_flap.png')
+        elif pt == 3:
+            pocketreg = Image.open('source/pocket_mock.png')
 
     shirt.paste(mask, (0,0), mask)
     shirt.paste(collarreg, (0,0), collarreg)
+    shirt.paste(pocketreg, (0,0), pocketreg)
     design.paste(shirt, (0,0), shirt)
 
     design.save('dump/output1.png')
@@ -184,10 +333,41 @@ def none():
     global ct
     shirt = Image.open("source/torso_half_sleeve.png").convert("RGBA")
     mask = Image.open("source/mask_half_sleeve.png").convert("RGBA")
-    collar = Image.open("source/collar_regular.png").convert("RGBA")
+
+    if ct == 0:
+        collarreg = Image.open('source/collar_regular.png')
+        if pt == 0:
+            pocketreg = Image.open('source/pocket_none.png')
+        elif pt == 1:
+            pocketreg = Image.open('source/pocket_round.png')
+        elif pt == 2:
+            pocketreg = Image.open('source/pocket_flap.png')
+        elif pt == 3:
+            pocketreg = Image.open('source/pocket_mock.png')
+    elif ct == 1:
+        collarreg = Image.open('source/collar_standing.png')
+        if pt == 0:
+            pocketreg = Image.open('source/pocket_none.png')
+        elif pt == 1:
+            pocketreg = Image.open('source/pocket_round.png')
+        elif pt == 2:
+            pocketreg = Image.open('source/pocket_flap.png')
+        elif pt == 3:
+            pocketreg = Image.open('source/pocket_mock.png')
+    elif ct == 2:
+        collarreg = Image.open('source/collar_buttondown.png')
+        if pt == 0:
+            pocketreg = Image.open('source/pocket_none.png')
+        elif pt == 1:
+            pocketreg = Image.open('source/pocket_round.png')
+        elif pt == 2:
+            pocketreg = Image.open('source/pocket_flap.png')
+        elif pt == 3:
+            pocketreg = Image.open('source/pocket_mock.png')
 
     shirt.paste(mask, (0,0), mask)
-    shirt.paste(collar, (0,0), collar)
+    shirt.paste(collarreg, (0,0), collarreg)
+    shirt.paste(pocketreg, (0,0), pocketreg)
     shirt.save("source/output1.png")
     pastepattern = tk.PhotoImage(file="source/output1.png")
 
@@ -201,13 +381,38 @@ def polka():
 
     if ct == 0:
         collarreg = Image.open('source/collar_regular.png')
+        if pt == 0:
+            pocketreg = Image.open('source/pocket_none.png')
+        elif pt == 1:
+            pocketreg = Image.open('source/pocket_round.png')
+        elif pt == 2:
+            pocketreg = Image.open('source/pocket_flap.png')
+        elif pt == 3:
+            pocketreg = Image.open('source/pocket_mock.png')
     elif ct == 1:
         collarreg = Image.open('source/collar_standing.png')
+        if pt == 0:
+            pocketreg = Image.open('source/pocket_none.png')
+        elif pt == 1:
+            pocketreg = Image.open('source/pocket_round.png')
+        elif pt == 2:
+            pocketreg = Image.open('source/pocket_flap.png')
+        elif pt == 3:
+            pocketreg = Image.open('source/pocket_mock.png')
     elif ct == 2:
         collarreg = Image.open('source/collar_buttondown.png')
+        if pt == 0:
+            pocketreg = Image.open('source/pocket_none.png')
+        elif pt == 1:
+            pocketreg = Image.open('source/pocket_round.png')
+        elif pt == 2:
+            pocketreg = Image.open('source/pocket_flap.png')
+        elif pt == 3:
+            pocketreg = Image.open('source/pocket_mock.png')
 
     shirt.paste(mask, (0,0), mask)
     shirt.paste(collarreg, (0,0), collarreg)
+    shirt.paste(pocketreg, (0,0), pocketreg)
     design.paste(shirt, (0,0), shirt)
 
     design.save('dump/output1.png')
@@ -223,13 +428,38 @@ def flowers():
 
     if ct == 0:
         collarreg = Image.open('source/collar_regular.png')
+        if pt == 0:
+            pocketreg = Image.open('source/pocket_none.png')
+        elif pt == 1:
+            pocketreg = Image.open('source/pocket_round.png')
+        elif pt == 2:
+            pocketreg = Image.open('source/pocket_flap.png')
+        elif pt == 3:
+            pocketreg = Image.open('source/pocket_mock.png')
     elif ct == 1:
         collarreg = Image.open('source/collar_standing.png')
+        if pt == 0:
+            pocketreg = Image.open('source/pocket_none.png')
+        elif pt == 1:
+            pocketreg = Image.open('source/pocket_round.png')
+        elif pt == 2:
+            pocketreg = Image.open('source/pocket_flap.png')
+        elif pt == 3:
+            pocketreg = Image.open('source/pocket_mock.png')
     elif ct == 2:
         collarreg = Image.open('source/collar_buttondown.png')
+        if pt == 0:
+            pocketreg = Image.open('source/pocket_none.png')
+        elif pt == 1:
+            pocketreg = Image.open('source/pocket_round.png')
+        elif pt == 2:
+            pocketreg = Image.open('source/pocket_flap.png')
+        elif pt == 3:
+            pocketreg = Image.open('source/pocket_mock.png')
 
     shirt.paste(mask, (0,0), mask)
     shirt.paste(collarreg, (0,0), collarreg)
+    shirt.paste(pocketreg, (0,0), pocketreg)
     design.paste(shirt, (0,0), shirt)
 
     design.save('dump/output1.png')
@@ -250,7 +480,7 @@ def flowers():
 gaplabel = tk.Label(root,text="               ")
 gaplabel.grid(row=0, column=2)
 
-headerprice = tk.Label(root, text="Price:  " + str(price), font=("Impact", 22))
+headerprice = tk.Label(root, text="Price  " + str(price), font=("Impact", 22))
 headerprice.grid(row=0, column=3)
 
 #From this line till colorbutton.grid is the parameter of color, use this syntax for each additional criterion
@@ -293,7 +523,7 @@ def colorget(): #Make the color pricing based on length & not just a flat cost
         colorprice = 155
         price = price + colorprice
         # test1label = tk.Label(root, image=testcircleorange).place(x=200, y=50)
-    headerprice.configure(text="Price:  " + str(price))
+    headerprice.configure(text="Price  " + str(price))
 
 
 
@@ -362,7 +592,7 @@ fabricvar.set(fabriclist[1])
 
 fabricmenu = tk.OptionMenu(root, fabricvar, fabriclist[0], fabriclist[1], fabriclist[2], fabriclist[3])
 fabricmenu.config(width=10)
-fabricmenu.grid(row=4, column=0)
+fabricmenu.grid(row=5, column=0)
 
 def fabricget():
     global price
@@ -394,16 +624,16 @@ def fabricget():
     headerprice.configure(text="Price  " + str(price))
 
 fabricbutton = tk.Button(root, text="Enter", command=fabricget)
-fabricbutton.grid(row=4, column=1)
+fabricbutton.grid(row=5, column=1)
 
 #Collar
 collarlist = ["Standing", "Regular", "Buttondown"]
 collarvar = tk.StringVar(root)
 collarvar.set(collarlist[1])
 
-patternmenu = tk.OptionMenu(root, collarvar, collarlist[0], collarlist[1], collarlist[2])
-patternmenu.config(width=10)
-patternmenu.grid(row=2, column=0)
+collarmenu = tk.OptionMenu(root, collarvar, collarlist[0], collarlist[1], collarlist[2])
+collarmenu.config(width=10)
+collarmenu.grid(row=2, column=0)
 
 def collarget():
     global ct 
@@ -490,6 +720,57 @@ def patternget():
 patternbutton = tk.Button(root, text="Enter", command=patternget)
 patternbutton.grid(row=3, column=1)
 
+#Pocket
+pocketlist = ["Round", "Flap", "Mock", "None"]
+pocketvar = tk.StringVar(root)
+pocketvar.set(pocketlist[3])
+
+pocketmenu = tk.OptionMenu(root, pocketvar, pocketlist[0], pocketlist[1], pocketlist[2], pocketlist[3])
+pocketmenu.config(width=10)
+pocketmenu.grid(row=4, column=0)
+
+def pocketget():
+    global price
+    global length
+    global pt
+    global pocketprice
+    getpocket = pocketvar.get()
+
+    price = price - pocketprice
+    if getpocket == "Round":
+        pocketprice = 25
+        price = price + 25
+        pt = 1
+        start()
+        baselabel = tk.Label(root, image=baseshirtimg)
+        baselabel.place(x=400, y=0)
+    if getpocket == "Flap":
+        pocketprice = 35
+        price = price + 35
+        pt = 2
+        start()
+        baselabel = tk.Label(root, image=baseshirtimg)
+        baselabel.place(x=400, y=0)
+    if getpocket == "Mock":
+        pocketprice = 20
+        price = price + 20
+        pt = 3
+        start()
+        baselabel = tk.Label(root, image=baseshirtimg)
+        baselabel.place(x=400, y=0)
+    if getpocket == "None":
+        pocketprice = 0
+        price = price + 0
+        pt = 0
+        start()
+        baselabel = tk.Label(root, image=baseshirtimg)
+        baselabel.place(x=400, y=0)
+
+    headerprice.configure(text="Price  " + str(price))
+
+pocketbutton = tk.Button(root, text="Enter", command=pocketget)
+pocketbutton.grid(row=4, column=1)
 
 root.mainloop() #Ending the tkinter mainloop, all code that should appear in GUI or is related to Tkinter tobe written abover this and before root = Tk()
 #---End of Code---
+
