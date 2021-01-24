@@ -1,3 +1,1 @@
-# costnew
-New 31/05/2020
-DEPRECATED
+# DEPRECATED
